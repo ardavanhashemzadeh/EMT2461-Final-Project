@@ -1,0 +1,15 @@
+#!/bin/bash
+# Ardavan Hashemzadeh
+# October 9th 2017
+# Detect loud sound
+AUDIODEV=hw:1,0
+TriggerLevel=0.12
+SampleDuration=1
+while true
+do
+Trigger=`paste <(rec -n stat trim 0 $SampleDuration 2>&1 | grep 'Maximum amplitude') <(echo $TriggerLevel) | awk '//{print ($3>=$4)?1:0'}`
+if [ "$Trigger" == "1" ]
+then ./project.exp
+else AlarmState="Quiet"
+fi
+echo `date` $AlarmState
