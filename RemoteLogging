@@ -1,0 +1,17 @@
+
+#!/usr/bin/expect
+# October 13 2017
+# Ardavan Hashemzadeh
+# Test remote logging
+
+set logfile ioti.log
+set host logs.papertrailapp.com
+set port 30181
+
+proc log {message {port $port} {host $host}} {
+  puts {$host}
+  exec logger "$message"
+  exec echo `date` >> $logfile
+}
+
+log hello
