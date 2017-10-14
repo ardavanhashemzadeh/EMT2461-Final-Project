@@ -7,7 +7,7 @@ proc log {message \
         {port 12345} \
         {server logs.papertrailapp.com} \
         {logfile ioti.log}} {
-  exec logger "$message" -n $server -P $port
+  exec logger "$message" -n $server -P $port -t IoTi
   exec /bin/bash -c "echo `date` $message >> $logfile"
 }
 
