@@ -1,0 +1,14 @@
+#!/usr/bin/expect
+# October 13 2017
+# Ardavan Hashemzadeh
+# Test logging function
+
+proc log {message \
+        {port 12345} \
+        {server logs.papertrailapp.com} \
+        {logfile ioti.log}} {
+  exec logger "$message" -n $server -P $port
+  exec /bin/bash -c "echo `date` $message >> $logfile"
+}
+
+log [lindex $argv 0]
