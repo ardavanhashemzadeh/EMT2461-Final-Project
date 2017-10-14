@@ -1,0 +1,10 @@
+#!/usr/bin/expect
+# October 14 2017
+# Ardavan Hashemzadeh
+# Test Snapshots
+proc snap {} {
+  set TimeStamp [exec /bin/bash -c {date +"%Y-%m-%d_%H%M%S"}]
+  exec /bin/bash -c "fswebcam -q -r 1920x1200 -S 2 $TimeStamp.jpg"
+  return $TimeStamp.jpg
+}
+puts [snap]
