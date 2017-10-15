@@ -1,0 +1,9 @@
+#!/bin/bash
+# October 14 2017
+# Ardavan Hashemzadeh
+# Upload to server
+command="put $1"
+identity=/home/pi/.ssh/idrsa
+connection=root@emt2461.geekdental.com
+destination=/var/www/html
+sftp -i $identity $connection:$destination <<< $command > /dev/null 2>&1
