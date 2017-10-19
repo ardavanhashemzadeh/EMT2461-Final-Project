@@ -1,0 +1,21 @@
+#!/usr/bin/bash
+# October 18 2017
+# Ardavan Hashemzadeh
+# Play with WiringPi GPIO
+
+# Select the desired pin
+pin=12
+
+# https://learn.adafruit.com/adafruits-raspberry-pi-lesson-8-using-a-servo-motor/software
+# Set the frequency to 50Hz
+# For the Raspberry Pi PWM modue:
+# PWM Hz = 19.2 MHz / pwmClock / pwmRange
+# 50 Hz = 19.2 MHz / 192 / 2000
+
+gpio pwm-ms
+gpio pwmc 192
+gpio pwmr 2000
+
+for pwm in $(seq 50 1 250); do gpio -1 pwm $pin $pwm; sleep 0; done
+for pwm in $(seq 250 -1 50); do gpio -1 pwm $pin $pwm; sleep 0; done
+gpio -1 pwm $pin 0
