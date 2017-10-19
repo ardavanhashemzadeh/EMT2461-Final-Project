@@ -1,0 +1,25 @@
+#!/usr/bin/bash
+# October 18 2017
+# Ardavan Hashemzadeh
+# Play with WiringPi GPIO
+
+for pin in $(seq 1 40); do gpio -1 mode $pin in; done
+gpio readall
+
+for pin in $(seq 1 40); do gpio -1 mode $pin out; done
+gpio readall
+
+for pin in $(seq 1 40); do gpio -1 mode $pin pwm; done
+gpio readall
+
+for pin in $(seq 1 40); do gpio -1 mode $pin clock; done
+gpio readall
+
+for pin in $(seq 1 40); do gpio -1 mode $pin up; done
+gpio readall
+
+for pin in $(seq 1 40); do gpio -1 mode $pin down; done
+gpio readall
+
+for pin in $(seq 1 40); do gpio -1 mode $pin tri; done
+gpio readall
