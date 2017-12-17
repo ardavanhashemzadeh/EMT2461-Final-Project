@@ -1,0 +1,4 @@
+# Add the following lines to rc.local before the line exit 0
+
+sudo rfcomm bind rfcomm0 98:D3:32:10:9F:6E
+. /home/pi/.profile ; cd /home/pi/project/wip ; expect x sip:emt2461fall2017@sip.linphone.org &
