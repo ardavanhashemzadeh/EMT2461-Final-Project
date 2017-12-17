@@ -1,0 +1,50 @@
+// December 17 2017
+// EMT2461 Final Project
+
+#include <Servo.h>
+
+int sensorPin = A0;    // select the input pin for the potentiometer
+int ledPin = 13;      // select the pin for the LED
+int sensorValue = 0;  // variable to store the value coming from the sensor
+int servoPin = 9;    // select the pin for the servo
+int servoCloseValue = 0;
+int servoOpenValue = 126;
+boolean doorState = 0;
+
+Servo doorServo;
+
+boolean toggleState() {
+  if (doorState) {
+    doorState = 0;
+    doorServo.write(servoCloseValue);
+  }
+  else {
+    doorState=1;
+    doorServo.write(servoOpenValue);
+  }
+  delay(500);
+  return doorState;
+}
+
+void setup() {
+  Serial.begin (9600);
+  // declare the ledPin as an OUTPUT:
+  pinMode(ledPin, OUTPUT);  
+  doorServo.attach(servoPin);
+}
+
+void loop() {
+  // read the value from the sensor:
+  if (digitalRead(sensorPin)) {
+    Serial.println("1");
+    delay(3000);
+    Serial.println("0");
+  }
+    if (Serial.available()){
+      if (Serial.read()=='1'){
+    doorServo.write(servoOpenValue);
+        delay(30000);
+    doorServo.write(servoCloseValue);
+      }
+    }
+}
